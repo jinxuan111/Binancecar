@@ -3,143 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binance Velocity - Professional Racing Simulator</title>
+    <title>Binance Racing - CZ's Speed Challenge</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="particles-bg"></div>
-    
     <div id="game-container">
         <div id="start-screen" class="screen">
-            <div class="glitch-container">
-                <h1 class="glitch" data-text="BINANCE VELOCITY">BINANCE VELOCITY</h1>
+            <div class="binance-logo">
+                <div class="logo-square"></div>
+                <h1>BINANCE RACING</h1>
             </div>
-            <div class="tagline">Professional Crypto Racing Simulator</div>
-            
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="icon">🏎️</div>
-                    <h3>Hypercar Performance</h3>
-                    <p>Experience next-gen racing dynamics</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">💎</div>
-                    <h3>Collect BNB</h3>
-                    <p>Earn crypto rewards on the track</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">⚡</div>
-                    <h3>Nitro Boost</h3>
-                    <p>Activate turbo speed bursts</p>
-                </div>
+            <h2>CZ's Speed Challenge 🏎️</h2>
+            <p>驾驶币安赛车，收集BNB代币，避开障碍物！</p>
+            <div class="instructions">
+                <p>🎮 使用方向键 ← → 控制赛车</p>
+                <p>💰 收集黄色BNB代币获得积分</p>
+                <p>⚠️ 避开红色障碍物</p>
             </div>
-
-            <div class="controls-info">
-                <div class="control-item">
-                    <kbd>←</kbd><kbd>→</kbd>
-                    <span>Steer Vehicle</span>
-                </div>
-                <div class="control-item">
-                    <kbd>SPACE</kbd>
-                    <span>Nitro Boost</span>
-                </div>
-            </div>
-
-            <button id="start-btn" class="neon-btn">
-                <span>START RACE</span>
-                <div class="neon-btn-glow"></div>
-            </button>
-
-            <div class="cz-quote">
-                <div class="quote-mark">"</div>
-                <p>If you can't hold, you won't be rich</p>
-                <div class="author">— Changpeng Zhao (CZ), Binance Founder</div>
-            </div>
+            <button id="start-btn" class="game-btn">开始游戏</button>
+            <div class="cz-quote">"Build and HODL" - CZ</div>
         </div>
 
         <div id="game-screen" class="screen hidden">
-            <div id="hud">
-                <div class="hud-top">
-                    <div class="hud-item hud-score">
-                        <div class="hud-label">SCORE</div>
-                        <div class="hud-value" id="score">0</div>
-                    </div>
-                    <div class="hud-item hud-speed">
-                        <div class="hud-label">SPEED</div>
-                        <div class="hud-value" id="speed">0</div>
-                        <div class="hud-unit">km/h</div>
-                    </div>
-                    <div class="hud-item hud-bnb">
-                        <div class="hud-label">BNB COLLECTED</div>
-                        <div class="hud-value" id="bnb-collected">0</div>
-                    </div>
+            <div id="game-header">
+                <div class="stat">
+                    <span class="label">Score:</span>
+                    <span id="score">0</span>
                 </div>
-                
-                <div class="hud-bottom">
-                    <div class="nitro-container">
-                        <div class="nitro-label">NITRO</div>
-                        <div class="nitro-bar-bg">
-                            <div class="nitro-bar" id="nitro-bar"></div>
-                        </div>
-                        <div class="nitro-percentage" id="nitro-percentage">100%</div>
-                    </div>
+                <div class="stat">
+                    <span class="label">BNB:</span>
+                    <span id="bnb-collected">0</span>
                 </div>
-
-                <div class="combo-display" id="combo-display">
-                    <div class="combo-text">COMBO</div>
-                    <div class="combo-value" id="combo-value">0x</div>
+                <div class="stat">
+                    <span class="label">Speed:</span>
+                    <span id="speed">1x</span>
                 </div>
             </div>
-            
             <canvas id="game-canvas"></canvas>
-            <canvas id="particles-canvas"></canvas>
         </div>
 
         <div id="game-over-screen" class="screen hidden">
-            <div class="glitch-container">
-                <h1 class="glitch game-over" data-text="RACE COMPLETE">RACE COMPLETE</h1>
+            <div class="binance-logo">
+                <div class="logo-square"></div>
+                <h1>GAME OVER</h1>
             </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">🏆</div>
-                    <div class="stat-label">Final Score</div>
-                    <div class="stat-value" id="final-score">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">💰</div>
-                    <div class="stat-label">BNB Earned</div>
-                    <div class="stat-value" id="final-bnb">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">⚡</div>
-                    <div class="stat-label">Max Speed</div>
-                    <div class="stat-value"><span id="final-speed">0</span> km/h</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🔥</div>
-                    <div class="stat-label">Best Combo</div>
-                    <div class="stat-value"><span id="final-combo">0</span>x</div>
-                </div>
+            <div class="final-stats">
+                <h2>🏁 最终成绩</h2>
+                <p>总分: <span id="final-score">0</span></p>
+                <p>BNB收集: <span id="final-bnb">0</span></p>
+                <p>最高速度: <span id="final-speed">1x</span></p>
             </div>
-
-            <button id="restart-btn" class="neon-btn">
-                <span>RACE AGAIN</span>
-                <div class="neon-btn-glow"></div>
-            </button>
-
-            <div class="cz-quote">
-                <div class="quote-mark">"</div>
-                <p>Stay SAFU, build through the bear</p>
-                <div class="author">— CZ</div>
-            </div>
+            <button id="restart-btn" class="game-btn">再玩一次</button>
+            <div class="cz-quote">"Stay SAFU!" - CZ</div>
         </div>
     </div>
 
-    <script src="js/particles.js"></script>
     <script src="js/car.js"></script>
     <script src="js/obstacles.js"></script>
-    <script src="js/effects.js"></script>
     <script src="js/game.js"></script>
 </body>
 </html>
