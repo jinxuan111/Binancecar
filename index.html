@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Racing - CZ's Speed Challenge</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="start-screen" class="screen">
+            <div class="binance-logo">
+                <div class="logo-square"></div>
+                <h1>BINANCE RACING</h1>
+            </div>
+            <h2>CZ's Speed Challenge 🏎️</h2>
+            <p>驾驶币安赛车，收集BNB代币，避开障碍物！</p>
+            <div class="instructions">
+                <p>🎮 使用方向键 ← → 控制赛车</p>
+                <p>💰 收集黄色BNB代币获得积分</p>
+                <p>⚠️ 避开红色障碍物</p>
+            </div>
+            <button id="start-btn" class="game-btn">开始游戏</button>
+            <div class="cz-quote">"Build and HODL" - CZ</div>
+        </div>
+
+        <div id="game-screen" class="screen hidden">
+            <div id="game-header">
+                <div class="stat">
+                    <span class="label">Score:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">BNB:</span>
+                    <span id="bnb-collected">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Speed:</span>
+                    <span id="speed">1x</span>
+                </div>
+            </div>
+            <canvas id="game-canvas"></canvas>
+        </div>
+
+        <div id="game-over-screen" class="screen hidden">
+            <div class="binance-logo">
+                <div class="logo-square"></div>
+                <h1>GAME OVER</h1>
+            </div>
+            <div class="final-stats">
+                <h2>🏁 最终成绩</h2>
+                <p>总分: <span id="final-score">0</span></p>
+                <p>BNB收集: <span id="final-bnb">0</span></p>
+                <p>最高速度: <span id="final-speed">1x</span></p>
+            </div>
+            <button id="restart-btn" class="game-btn">再玩一次</button>
+            <div class="cz-quote">"Stay SAFU!" - CZ</div>
+        </div>
+    </div>
+
+    <script src="js/car.js"></script>
+    <script src="js/obstacles.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
